@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Loại Kỳ Thi</title>
+</head>
+<body>
+<h2>Thêm Loại Kỳ Thi</h2>
+<form th:action="@{/exam-type-save}" method="post">
+    <label for="name">Tên loại kỳ thi:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit">Lưu</button>
+</form>
+</body>
+</html>

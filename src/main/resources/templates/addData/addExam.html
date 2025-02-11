@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Loại Kỳ Thi</title>
+</head>
+<body>
+<h2>Thêm Bai thi</h2>
+<form th:action="@{/exam-save}" method="post">
+    <label for="name">Tên kỳ thi:</label>
+    <input type="text" id="name" name="name" required>
+    <div class="form-group">
+        <label for="typeExam">Loại kỳ thi:</label>
+        <select id="typeExam" name="typeExam" class="form-control" required>
+            <option value="" disabled selected>Chọn loại kỳ thi:</option>
+            <option th:each="type : ${typeExam}"
+                    th:value="${type.id}"
+                    th:text="${type.name}"></option>
+        </select>
+    </div>
+    <button type="submit">Lưu</button>
+</form>
+</body>
+</html>

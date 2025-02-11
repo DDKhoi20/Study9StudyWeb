@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Question</title>
+    <script>
+        function addAnswerRow() {
+            let answerContainer = document.getElementById("answersContainer");
+            let index = document.querySelectorAll(".answer-row").length;
+            let div = document.createElement("div");
+            div.classList.add("answer-row");
+            div.innerHTML = `
+                <input type="text" name="answers[${index}].content" placeholder="Answer content" required />
+                <label>
+                    Correct? <input type="checkbox" name="answers[${index}].correct" />
+                </label>
+                <button type="button" onclick="removeAnswerRow(this)">❌</button>
+            `;
+            answerContainer.appendChild(div);
+        }
+
+        function removeAnswerRow(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</head>
+<body>
+<h2>Add Question</h2>
+<form th:action="@{/addQuestion}" method="post">
+    <label>Question Content:</label>
+    <input type="text" name="content" required />
+    <br>
+
+    <label>Image URL (Optional):</label>
+    <input type="text" name="imageUrl" placeholder="Enter image URL" />
+    <br>
+
+    <label>Audio URL (Optional):</label>
+    <input type="text" name="audioUrl" placeholder="Enter audio URL" />
+    <br>
+
+    <label>Exam:</label>
+    <select name="examId" required>
+        <option th:each="exam : ${exams}" th:value="${exam.id}" th:text="${exam.name}"></option>
+    </select>
+    <br>
+
+    <h3>Answers:</h3>
+    <div id="answersContainer">
+        <!-- Các câu trả lời sẽ được thêm ở đây -->
+    </div>
+    <button type="button" onclick="addAnswerRow()">➕ Add Answer</button>
+    <br><br>
+
+    <button type="submit">Save Question</button>
+</form>
+</body>
+</html>

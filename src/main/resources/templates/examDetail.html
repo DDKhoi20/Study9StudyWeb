@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chi tiết bài thi</title>
+    <link rel="stylesheet" href="/css/examDetail.css">
+</head>
+<body>
+<h1 th:text="${exam.name}"></h1>
+
+<div th:each="question : ${questions}" class="question-card">
+    <p th:text="${question.content}" class="question-text"></p>
+
+    <div th:style="${question.imageUrl == null or question.imageUrl == ''} ? 'display:none' : ''">
+        <img th:src="@{'/images/imageQuestion/' + ${question.imageUrl}}" alt="Question Image" class="question-image">
+    </div>
+
+    <div th:style="${question.audioUrl == null or question.audioUrl == ''} ? 'display:none' : ''">
+        <audio controls>
+            <source th:src="@{${question.audioUrl}}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <ul>
+        <li th:each="answer : ${question.answers}">
+            <label>
+                <input type="radio" th:name="'question-' + ${question.id}" th:value="${answer.id}">
+                <span th:text="${answer.content}"></span>
+            </label>
+        </li>
+    </ul>
+</div>
+
+<button type="submit">Nộp bài</button>
+</body>
+</html>

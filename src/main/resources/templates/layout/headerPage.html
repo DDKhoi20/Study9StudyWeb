@@ -1,0 +1,39 @@
+<header xmlns:th="http://www.w3.org/1999/xhtml">
+    <nav class="navbar navbar-light bg-light" style="height: 60px; padding-top: 5px; padding-bottom: 5px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/study9/home}">
+                    <img th:src="@{/images/icon/icon.jpg}" alt="Study(" style="width: 175px; height: 35px;">
+                </a>
+            </div>
+            <div style="display: flex !important">
+                <!-- Bootstrap Navbar -->
+                <div>
+                    <a th:href="@{/study9/test}" style="margin: auto 15px auto 0">Đề thi online</a>
+                </div>
+                <div class="action" th:if="${logIn}">
+                    <div class="profile" onclick="menuToggle();">
+                        <img src="/images/icon/user.png" style="width:30px; height: 30px"/>
+                    </div>
+                    <div class="menu">
+                        <h3>Dang Dang Khoi</h3>
+                        <ul>
+                            <li>
+                                <img src="/images/icon/user.webp" /><a href="#">My profile</a>
+                            </li>
+                            <li>
+                                <form th:action="@{/logout}" method="post">
+                                    <input type="submit" value="Sign Out" style="border: none; background-color: white"/>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="action" th:if="!${logIn}">
+                    <a href="@{/login}">Đăng nhập</a>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+</header>

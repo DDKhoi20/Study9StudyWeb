@@ -1,0 +1,47 @@
+#exams-homePageTest {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid black;
+    padding-top: 20px;
+    gap: 15px;
+}
+
+#exams-homePageTest li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 195px;
+    height: 250px;
+    border: 1px solid black;
+    padding: 15px;
+    margin: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-footer {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.border-a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    padding: 5px;
+}
+
+
+.border-a:hover {
+    color: white;
+    background-color: #2B427E;
+}
