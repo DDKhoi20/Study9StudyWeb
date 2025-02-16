@@ -16,10 +16,11 @@
                         <img src="/images/icon/user.png" style="width:30px; height: 30px"/>
                     </div>
                     <div class="menu">
-                        <h3>Dang Dang Khoi</h3>
                         <ul>
                             <li>
-                                <img src="/images/icon/user.webp" /><a href="#">My profile</a>
+                                <form th:action="@{/study9/myprofile}" method="get">
+                                    <input type="submit" value="My profile"/>
+                                </form>
                             </li>
                             <li>
                                 <form th:action="@{/logout}" method="post">

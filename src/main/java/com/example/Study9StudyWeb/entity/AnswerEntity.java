@@ -2,6 +2,9 @@ package com.example.Study9StudyWeb.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "answer")
 public class AnswerEntity {
@@ -18,6 +21,9 @@ public class AnswerEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", nullable = false)
     private QuestionEntity question;
+
+    @OneToMany(mappedBy = "selectedAnswer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<UserAnswerEntity> userAnswers = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -49,5 +55,13 @@ public class AnswerEntity {
 
     public void setQuestion(QuestionEntity question) {
         this.question = question;
+    }
+
+    public List<UserAnswerEntity> getUserAnswers() {
+        return userAnswers;
+    }
+
+    public void setUserAnswers(List<UserAnswerEntity> userAnswers) {
+        this.userAnswers = userAnswers;
     }
 }

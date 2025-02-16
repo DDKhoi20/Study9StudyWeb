@@ -1,9 +1,9 @@
 .question-card {
     border: 1px solid #ccc;
-    padding: 15px;
+    padding: 30px;
     margin-bottom: 20px;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.7)
 }
 
 .question-text {
@@ -15,4 +15,14 @@
     max-width: 100%;
     height: auto;
     margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.question-body{
+    max-width: 1000px;
+    margin: 10px 40px;
+}
+
+.li{
+    list-style-type: none;
 }

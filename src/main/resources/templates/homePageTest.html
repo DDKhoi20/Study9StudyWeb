@@ -26,7 +26,9 @@
         <ul id="exams-homePageTest">
             <li th:each="exam : ${exam}">
                 <div class="card-content">
+                    <p>Đề thi</p>
                     <a th:text="${exam.name}"></a>
+                    <a th:text="'Lượt làm bài: '+${userExamService.countNumberUserExam(exam.id)}"></a>
                 </div>
                 <div class="card-footer">
                     <a th:href="@{/examDetail(idExam=${exam.id})}" class="border-a">Làm bài</a>

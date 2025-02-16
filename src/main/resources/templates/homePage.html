@@ -9,7 +9,7 @@
 </head>
 <body>
     <div th:replace="~{layout/headerPage :: header}"></div>
-    <span>Xin chao den voi study9</span>
+    <span>Xin chao <span th:text="${account.firstName + ' ' + account.lastName}"></span></span>
     <script>
         function menuToggle() {
           const toggleMenu = document.querySelector(".menu");

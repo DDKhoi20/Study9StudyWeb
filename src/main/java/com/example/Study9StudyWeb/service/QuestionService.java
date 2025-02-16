@@ -40,4 +40,8 @@ public class QuestionService {
         question.setAnswers(answers);
         questionRepository.save(question);
     }
+
+    public int getTotalQuestion(Long examId){
+        return questionRepository.countQuestionsByExamId(examId);
+    }
 }

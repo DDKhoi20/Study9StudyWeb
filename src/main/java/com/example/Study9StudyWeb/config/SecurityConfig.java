@@ -51,7 +51,7 @@ public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
-                .requestMatchers( "/images/**", "/css/**");
+                .requestMatchers( "/images/**", "/css/**", "/mp3/**");
     }
 
     @Bean

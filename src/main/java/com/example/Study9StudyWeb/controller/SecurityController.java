@@ -5,6 +5,7 @@ import com.example.Study9StudyWeb.entity.RoleEntity;
 import com.example.Study9StudyWeb.enums.Role;
 import com.example.Study9StudyWeb.repository.AccountRepository;
 import com.example.Study9StudyWeb.repository.RoleRepository;
+import com.example.Study9StudyWeb.service.CustomUserDetailsService;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,14 @@ public class SecurityController {
     AccountRepository accountRepository;
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    CustomUserDetailsService customUserDetailsService;
 
-//    @PostConstruct
-//    public void init() {
-//        createRoleDefault();
-//        createAccountDefault();
-//    }
+    @PostConstruct
+    public void init() {
+        createRoleDefault();
+        createAccountDefault();
+    }
 
     private void createRoleDefault() {
         List<RoleEntity> roleEntityList = roleRepository.findAll();
@@ -79,10 +82,6 @@ public class SecurityController {
         return "login";
     }
 
-    @GetMapping("/home")
-    public String home(){
-        return "hello";
-    }
 
     @GetMapping("/register")
     public String register(){
@@ -111,6 +110,14 @@ public class SecurityController {
         accountEntity.setPassword(passwordEncoder.encode(password));
         accountEntity.setFirstName(firstName);
         accountEntity.setLastName(lastName);
+
+        RoleEntity roleEntity = roleRepository.findByRole(Role.ROLE_USER);
+        if (roleEntity != null) {
+            Set<RoleEntity> roleEntitySet = new LinkedHashSet<>();
+            roleEntitySet.add(roleEntity);
+            accountEntity.setUserRoles(roleEntitySet);
+        }
+
         accountRepository.save(accountEntity);
 
         return "/login";

@@ -26,6 +26,9 @@ public class QuestionEntity {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AnswerEntity> answers = new ArrayList<>();
 
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<UserAnswerEntity> userAnswers = new ArrayList<>();
+
     public Long getId() {
         return id;
     }
@@ -72,5 +75,13 @@ public class QuestionEntity {
 
     public void setAnswers(List<AnswerEntity> answers) {
         this.answers = answers;
+    }
+
+    public List<UserAnswerEntity> getUserAnswers() {
+        return userAnswers;
+    }
+
+    public void setUserAnswers(List<UserAnswerEntity> userAnswers) {
+        this.userAnswers = userAnswers;
     }
 }

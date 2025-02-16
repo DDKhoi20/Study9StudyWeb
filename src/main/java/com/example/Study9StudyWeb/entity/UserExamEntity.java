@@ -3,6 +3,8 @@ package com.example.Study9StudyWeb.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user_exam")
@@ -18,6 +20,9 @@ public class UserExamEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "exam_id", nullable = false)
     private ExamEntity exam;
+
+    @OneToMany(mappedBy = "userExam", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<UserAnswerEntity> userAnswers = new ArrayList<>();
 
     private int score;
 
@@ -61,5 +66,13 @@ public class UserExamEntity {
 
     public void setExamDate(LocalDateTime examDate) {
         this.examDate = examDate;
+    }
+
+    public List<UserAnswerEntity> getUserAnswers() {
+        return userAnswers;
+    }
+
+    public void setUserAnswers(List<UserAnswerEntity> userAnswers) {
+        this.userAnswers = userAnswers;
     }
 }
